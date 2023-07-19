@@ -12,7 +12,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "add") {
     $dehado_plasada = $_POST["dehado_plasada"];
     $total_event_fights = 0;
     $expected_event_fights = $_POST["expected_event_fights"];
-    $event_status = "Open"; // Default value for event_status
+    $event_status = "Open";
 
     $sql = "INSERT INTO events (event_name, event_area, event_date, meron_position, wala_position, liamado_plasada, dehado_plasada, total_event_fights, expected_event_fights, event_status) VALUES ('$event_name', '$event_area', '$event_date', '$meron_position', '$wala_position', '$liamado_plasada', '$dehado_plasada', $total_event_fights, '$expected_event_fights', '$event_status')";
 
@@ -88,8 +88,6 @@ if (isset($_POST["action"]) && $_POST["action"] == "fetch_single") {
 
 // Edit event function
 if (isset($_POST["action"]) && $_POST["action"] == "edit") {
-    var_dump($_POST); // Log the received POST data for debugging
-
     $event_id = $_POST["event_id"];
     $event_name = $_POST["event_name"];
     $event_area = $_POST["event_area"];
