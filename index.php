@@ -55,7 +55,6 @@
         </div>
 
 
-
         <!-- Add Event Modal -->
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -178,10 +177,8 @@
 
         <script>
             $(document).ready(function() {
-                // Fetch events 
                 fetchOpenEvents();
                 fetchCloseEvents();
-                
                 let previousData = "";
 
                 // Fetch open events function
@@ -219,12 +216,9 @@
                     });
                 }
 
-
-
                 // Fetch events function
                 function fetchCloseEvents() {
-
-                $.ajax({
+                    $.ajax({
                         url: "events_functions.php",
                         type: "POST",
                         data: { action: "fetchCloseEvents" },
@@ -333,12 +327,7 @@
                     });
                 });
 
-                
-
-
             });
-
-
         </script>
 
     </body>

@@ -53,7 +53,6 @@
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                
                 $buttonText = ($row["event_status"] === "Open") ? "Close" : "Open";
                 $buttonColorClass = ($row["event_status"] === "Open") ? "btn-danger" : "btn-success";
                 $statusTextColorClass = ($row["event_status"] === "Open") ? "text-success" : "text-danger";
@@ -62,6 +61,12 @@
                 $created_at = $row["created_at"]; 
                 $eventDate = date("F j, Y", strtotime($created_at));
 
+                $disableButtonClass = "";
+                $sqlCheckOpenEvent = "SELECT id FROM events WHERE event_status = 'Open'";
+                $resultCheckOpenEvent = $conn->query($sqlCheckOpenEvent);
+                if ($resultCheckOpenEvent->num_rows > 0) {
+                    $disableButtonClass = "disabled";
+                }
 
                 $output .= "
                     <tr>
@@ -73,7 +78,7 @@
                         <td>" . $eventDate . "</td> 
 
                         <td>
-                            <button class='btn btn-success changeStatusBtn " . $buttonColorClass . "' data-id='" . $row["id"] . "' data-status='" . $row["event_status"] . "'>" . $buttonText . "</button>
+                            <button class='btn changeStatusBtn " . $buttonColorClass . " " . $disableButtonClass . "' data-id='" . $row["id"] . "' data-status='" . $row["event_status"] . "' " . $disableButtonClass . ">" . $buttonText . "</button>
                         </td>
                     </tr>
                 ";
@@ -173,12 +178,11 @@
         $resultCheckOpenEvent = $conn->query($sqlCheckOpenEvent);
 
         if ($resultCheckOpenEvent->num_rows > 0) {
-            echo "btn-danger"; 
+            echo "btn-danger"; // open events
         } else {
-            echo "btn-success";
+            echo "btn-success"; // closed events
         }
     }
-
 
     $conn->close();
 
