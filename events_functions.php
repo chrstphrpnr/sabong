@@ -173,9 +173,9 @@
         $resultCheckOpenEvent = $conn->query($sqlCheckOpenEvent);
 
         if ($resultCheckOpenEvent->num_rows > 0) {
-            echo "btn-danger"; // Return the class for open events
+            echo "btn-danger"; 
         } else {
-            echo "btn-success"; // Return the class for closed events
+            echo "btn-success";
         }
     }
 
